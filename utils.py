@@ -1,16 +1,16 @@
 # utils.py
-import ssl_session
-import wikipedia.wikipedia  # ✅ 一定要 import 這個名稱
+#import ssl_session
+#import wikipedia.wikipedia  # ✅ 一定要 import 這個名稱
 
 # ✅ 強制替換掉 requests.get
-wikipedia.wikipedia.requests.get = ssl_session.get
-print("Using patched requests.get:", wikipedia.wikipedia.requests.get)
+#wikipedia.wikipedia.requests.get = ssl_session.get
+#print("Using patched requests.get:", wikipedia.wikipedia.requests.get)
 
 from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_community.utilities import WikipediaAPIWrapper
 from opencc import OpenCC
-import httpx
+#import httpx
 
 # 1. 獲得影片標題
 # 2. 呼叫維基百科的API, 獲得相關訊息
@@ -38,7 +38,7 @@ def generate_script(subject, video_length, creativity, api_key, api_model):
     )
 
     # 建立一個不驗證 SSL 憑證的 http client（⚠️ 測試用）
-    http_client = httpx.Client(verify=False)
+    #http_client = httpx.Client(verify=False)
 
     # 用 OpenAI 新版 SDK 初始化 client，整合所有參數
     model = ChatOpenAI(
@@ -49,7 +49,7 @@ def generate_script(subject, video_length, creativity, api_key, api_model):
         openai_api_key=api_key,
         openai_api_base="https://free.v36.cm/v1/",
         default_headers={"x-foo": "true"},
-        http_client=http_client,
+        #http_client=http_client,
     )
 
     title_chain = title_template | model
